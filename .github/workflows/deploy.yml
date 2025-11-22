@@ -40,17 +40,6 @@ jobs:
 #      - name: Create .env file from single GitHub Secret
 #        run: |
 #          echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
-      
-
-      # ✅ 그 다음 .env 포함해서 전체를 EC2로 전송
-      - name: Copy project to EC2 (including .env)
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
-          source: "KIOSK/*"
-          target: "/home/${{ secrets.EC2_USER }}/KIOSK"
 
 
       # ✅ 5. GitHub Actions의 비밀 키(secrets) 에 등록해놓은 EC2_HOST, EC2_USER, EC2_KEY가 제대로 넘어왔는지 확인
@@ -66,14 +55,25 @@ jobs:
 
 
       # ✅ 6. EC2 서버로 코드 복사
+#      - name: Copy project to EC2
+#        uses: appleboy/scp-action@v0.1.4
+#        with:
+#          host: ${{ secrets.EC2_HOST }}
+#          username: ${{ secrets.EC2_USER }}
+#          key: ${{ secrets.EC2_KEY }}
+#          source: "KIOSK/*"
+#          target: "/home/${{ secrets.EC2_USER }}/KIOSK"
+#          debug: true
+
       - name: Copy project to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
-          source: "KIOSK/*"
+          source: "KIOSK/**"
           target: "/home/${{ secrets.EC2_USER }}/KIOSK"
+          strip_components: 1
           debug: true
 
       #  ✅ 7. EC2에서 docker compose 실행
