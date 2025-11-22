@@ -36,4 +36,5 @@ public class EventLogResponseDto { // 이벤트 로그 반환 dto
       throw new RuntimeException("JSON 파싱 오류", e);
     }
   }
+
 }

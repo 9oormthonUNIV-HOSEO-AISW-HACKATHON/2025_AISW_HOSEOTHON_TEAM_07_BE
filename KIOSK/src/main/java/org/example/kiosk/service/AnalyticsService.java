@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Slf4j   // 로그 사용 가능!
 @RequiredArgsConstructor
 public class AnalyticsService {
 
@@ -23,8 +22,6 @@ public class AnalyticsService {
   public double getAverageStayTime(int pageNum) {
 
     List<EventLog> logs = eventLogRepository.findStayTimeByPage(pageNum);
-
-    log.info("📌 pageNum={} 에 대한 STAY_TIME 로그 {}개 조회됨", pageNum, logs.size());
 
     // userCount → totalStaySeconds
     Map<Integer, Double> userTotals = new HashMap<>();
@@ -40,7 +37,6 @@ public class AnalyticsService {
     }
 
     if (userTotals.isEmpty()) {
-      log.warn("⚠️ pageNum={} 에 대한 로그가 없어 평균 계산 불가 (0 반환)", pageNum);
       return 0.0;
     }
 
@@ -51,14 +47,6 @@ public class AnalyticsService {
 
     int userCount = userTotals.size();
     double avg = sum / userCount;
-
-    // 상세 로그 출력
-    log.info("----- 📊 페이지 {} 평균 머무른 시간 계산 결과 -----", pageNum);
-    log.info("👤 사용자별 머문 시간 총합: {}", userTotals);
-    log.info("🔢 사용자 수: {}", userCount);
-    log.info("🧮 총합 staySeconds = {}", sum);
-    log.info("📈 평균 staySeconds = {}", avg);
-    log.info("------------------------------------------------");
 
     return avg;
   }
