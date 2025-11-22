@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Map;
 
 @Getter
@@ -15,7 +16,7 @@ import java.util.Map;
 public class EventLogResponseDto { // 이벤트 로그 반환 dto
   private Long eventLogId;
   private String eventName;
-  private LocalDateTime createdAt;
+  private OffsetDateTime createdAt;
   private Map<String, Object> payLoad;
 
   public static EventLogResponseDto from(org.example.kiosk.entity.EventLog eventLog) {
