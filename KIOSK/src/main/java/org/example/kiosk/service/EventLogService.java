@@ -38,12 +38,6 @@ public class EventLogService {
   }
 
 
-  // 페이지 별, 평균 머무른 시간 반환
-  public PageAverageStayTimeDto getAvgTime(Integer page) {
-    return null;
-
-  }
-
 
 
 
