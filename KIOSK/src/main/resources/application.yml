@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: KIOSK # 서버
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/KIOSK?createDatabaseIfNotExist=true # 서버
+    #    url: jdbc:mysql://localhost:3306/KIOSK?createDatabaseIfNotExist=true
+    username: root
+    password: 980122
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # 앱 실행시 테이블 생성, 앱 종료시 테이블 삭제
+
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true
+
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+server:
+  #  port: 8081
+  port: 8080 # 서버
