@@ -20,4 +20,14 @@ public interface EventLogRepository extends JpaRepository<EventLog, Long> {
           nativeQuery = true
   )
   List<EventLog> findStayTimeByPage(@Param("pageNum") int pageNum);
+
+
+  // 이벤트 로그 중에, 특정 화면에 클릭 이벤트 반환
+  @Query(
+          value = "SELECT * FROM event_log " +
+                  "WHERE event_name = 'TOUCH_EVENT' " +
+                  "AND JSON_EXTRACT(pay_load, '$.pageNum') = :pageNum",
+          nativeQuery = true
+  )
+  List<EventLog> findTouchEventsByPage(int pageNum);
 }

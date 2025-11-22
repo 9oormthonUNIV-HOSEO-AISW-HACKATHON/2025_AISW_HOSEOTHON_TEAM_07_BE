@@ -3,6 +3,7 @@ package org.example.kiosk.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.example.kiosk.dto.ClickPositionDto;
 import org.example.kiosk.dto.EventLogRequestDto;
 import org.example.kiosk.dto.EventLogResponseDto;
 import org.example.kiosk.dto.PageAverageStayTimeDto;
@@ -58,4 +59,17 @@ public class EventLogController {
     double averageTime = analyticsService.getAverageStayTime(pageNum);
     return new PageAverageStayTimeDto(String.valueOf(pageNum), averageTime);
   }
+
+
+  /**
+   * 특정 페이지의 마우스 클릭 좌표 리스트 조회
+   */
+  @GetMapping("/click")
+  @Operation(summary = "특정 페이지의 마우스 클릭 좌표 리스트 조회")
+  public List<ClickPositionDto> getClickEventsByPage(@RequestParam int pageNum) {
+    return eventLogService.getTouchEventsByPage(pageNum);
+  }
+
+
+
 }
