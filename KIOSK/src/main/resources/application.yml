@@ -14,7 +14,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 
     # JPA(ddl-auto)가 실행된 후 data.sql을 실행하도록 순서를 보장
 #    defer-datasource-initialization: true
