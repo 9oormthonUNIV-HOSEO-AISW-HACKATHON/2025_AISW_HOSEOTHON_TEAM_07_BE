@@ -4,14 +4,13 @@ import org.example.kiosk.entity.EventLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
+@Repository
 public interface EventLogRepository extends JpaRepository<EventLog, Long> {
-
-  // 이벤트 타입별 조회 기능 구현
-
-
 
   // 이벤트 로그 중에, 화면에 머문 시간이면서 요청하는 페이지인 결과들 반환
   @Query(
