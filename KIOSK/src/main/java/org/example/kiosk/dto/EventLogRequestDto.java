@@ -17,7 +17,8 @@ public class EventLogRequestDto { // 이벤트 로그 저장 dto
           description = "이벤트 상세 데이터",
           example = """
             {
-              "page": "main-menu",
+              "userCount": 1
+              "pageNum": 10,
               "staySeconds": 12
             }
             """

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.kiosk.dto.EventLogRequestDto;
+import org.example.kiosk.dto.PageAverageStayTimeDto;
 import org.example.kiosk.entity.EventLog;
 import org.example.kiosk.repository.EventLogRepository;
 import org.springframework.stereotype.Service;
@@ -31,9 +32,19 @@ public class EventLogService {
   }
 
 
-  // 이벤트 로그 반환
+  // 이벤트 로그 전체 반환
   public List<EventLog> findAll() {
     return eventLogRepository.findAll();
   }
+
+
+  // 페이지 별, 평균 머무른 시간 반환
+  public PageAverageStayTimeDto getAvgTime(Integer page) {
+    return null;
+
+  }
+
+
+
 
 }
