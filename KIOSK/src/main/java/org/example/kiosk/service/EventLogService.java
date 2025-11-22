@@ -12,6 +12,8 @@ import org.example.kiosk.repository.EventLogRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Service
@@ -24,7 +26,7 @@ public class EventLogService {
   public void save(EventLogRequestDto req) throws JsonProcessingException {
     EventLog log = EventLog.builder()
             .eventName(req.getEventName())
-            .createdAt(LocalDateTime.now())
+            .createdAt(OffsetDateTime.now(ZoneId.of("Asia/Seoul")))
             .payLoad(new ObjectMapper().writeValueAsString(req.getPayLoad()))
             .build();
 

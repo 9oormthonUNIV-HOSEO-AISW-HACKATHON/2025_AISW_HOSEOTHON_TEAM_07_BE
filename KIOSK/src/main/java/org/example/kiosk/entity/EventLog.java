@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
 @Getter
@@ -20,7 +21,7 @@ public class EventLog {
   private String eventName; // 이벤트 종류 (화면 머문 시간, 클릭 좌표)
 
   @Column(nullable = false)
-  private LocalDateTime createdAt; // 로그 저장 시간
+  private OffsetDateTime createdAt; // 로그 저장 시간
 
   @Lob
   @Column(columnDefinition = "json") // 이벤트별 상세 데이터
